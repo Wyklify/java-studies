@@ -3,9 +3,8 @@ package tabuleiro_damas;
 import saida_formato_tabela.formatar;
 
 public class Tabuleiro {
-    
-    void imprimirTabuleiro(){
 
+    void imprimirTabuleiro() {
 
         for (int i = 0; i < 8; i++) {
 
@@ -14,19 +13,16 @@ public class Tabuleiro {
                 if ((i + j) % 2 == 0) {
 
                     System.out.print("*");
-                    
+
                 } else {
 
                     System.out.print(" ");
                 }
 
-                
             }
 
             System.out.println();
 
-            
-            
         }
     }
 
@@ -35,6 +31,8 @@ public class Tabuleiro {
         Tabuleiro a = new Tabuleiro();
 
         a.imprimirTabuleiro();
-        
+
+     
+
     }
 }
