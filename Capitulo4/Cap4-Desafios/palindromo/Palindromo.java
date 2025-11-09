@@ -31,7 +31,7 @@ public class Palindromo {
         System.out.println(Palindromo.verificarPalindromo(123));
     }
 
-
+    
     
     
 }
