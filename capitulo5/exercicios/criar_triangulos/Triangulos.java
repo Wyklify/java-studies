@@ -42,7 +42,7 @@ public class Triangulos {
     }
 
 
-    private static String montar(int valor){
+    public static String montar(int valor){
 
 
         String a = "";
