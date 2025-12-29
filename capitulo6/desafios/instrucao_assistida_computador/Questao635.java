@@ -21,16 +21,13 @@ public class Questao635 {
         return 1 + sc.nextInt(9);
     }
 
-
-    public static String mensagem(int inicio, int fim){
+    public static String mensagem(int inicio, int fim) {
 
         SecureRandom sc = new SecureRandom();
 
-       
+        int valor = inicio + sc.nextInt(fim);
 
-        int valor  = inicio + sc.nextInt(fim);
-
-        return switch(valor) {
+        return switch (valor) {
 
             case 1 -> "Muito bom!";
             case 2 -> "Excelente!";
@@ -39,16 +36,20 @@ public class Questao635 {
             case 5 -> "Não. Por favor, tente de novo.";
             case 6 -> "Errado. Tente mais uma vez.";
             case 7 -> "Não desista!";
-            default -> "Não. Continue tentando!";                       
-            
+            default -> "Não. Continue tentando!";
+
         };
     }
 
     public static void main(String[] args) {
 
+        int respostaCorreta = 0;
+        int respostaIncorreta = 0;
+        int contador = 0;
+
         Scanner input = new Scanner(System.in);
 
-        while (true) {
+        while (contador < 10) {
 
             desenharNumero(numeroRandom(), numeroRandom());
 
@@ -59,17 +60,43 @@ public class Questao635 {
 
                 if (entrada == numero) {
 
-                    System.out.println( mensagem(1,4) );
+                    respostaCorreta++;
+                    contador++;
+
+                    System.out.println(mensagem(1, 4));
 
                     break;
 
                 } else {
 
-                    System.out.println(mensagem(5,4));
-                    continue;
+                    respostaIncorreta++;
+                    contador++;
+                    System.out.println(mensagem(5, 4));
+
+                    if (contador == 10) {
+
+                        break;
+                    }
+
                 }
+
             }
 
         }
+
+        System.out.println("Resultado!");
+        System.out.println("Quantidade de acertos:  " + respostaCorreta);
+        System.out.println("Quantidade de erros:  " + respostaIncorreta);
+
+        if (((double) respostaCorreta / contador * 100) >= 75) {
+
+            System.out.println("Parabéns, você está pronto para avançar para o próximo nível!");
+        } else {
+            System.out.println("Peça ajuda extra ao professor.");
+        }
+
+        contador = 0;
+        respostaCorreta = 0;
+        respostaIncorreta = 0;
     }
 }
