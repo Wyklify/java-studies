@@ -21,6 +21,29 @@ public class Questao635 {
         return 1 + sc.nextInt(9);
     }
 
+
+    public static String mensagem(int inicio, int fim){
+
+        SecureRandom sc = new SecureRandom();
+
+       
+
+        int valor  = inicio + sc.nextInt(fim);
+
+        return switch(valor) {
+
+            case 1 -> "Muito bom!";
+            case 2 -> "Excelente!";
+            case 3 -> "Bom trabalho!";
+            case 4 -> "Mantenha um bom trabalho!";
+            case 5 -> "Não. Por favor, tente de novo.";
+            case 6 -> "Errado. Tente mais uma vez.";
+            case 7 -> "Não desista!";
+            default -> "Não. Continue tentando!";                       
+            
+        };
+    }
+
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -36,13 +59,13 @@ public class Questao635 {
 
                 if (entrada == numero) {
 
-                    System.out.println("Muito bem!");
+                    System.out.println( mensagem(1,4) );
 
                     break;
 
                 } else {
 
-                    System.out.println("Não. Por favor, tente de novo.");
+                    System.out.println(mensagem(5,4));
                     continue;
                 }
             }
