@@ -5,20 +5,45 @@ import java.util.Scanner;
 
 public class Questao635 {
 
-    private static int numero;
+    private static double numero;
 
-    public static void desenharNumero(int valor1, int valor2) {
+    public static double desenharNumero(int valor1, int valor2, int operacao) {
 
-        System.out.printf("Quanto é %d vezes %d?\n", valor1, valor2);
+        SecureRandom sc = new SecureRandom();
 
-        numero = valor1 * valor2;
+        int operador = (operacao >= 1 && operacao <= 4) ? operacao : 1 + sc.nextInt(4);
+
+
+        System.out.printf("Quanto é %d %s %d?\n", Math.max(valor1, valor2), conversor(operador), Math.min(valor1, valor2));
+
+
+        return numero = switch(operador) {
+            case 1 -> valor1 + valor2;
+            case 2 -> Math.max(valor1, valor2) - Math.min(valor1, valor2);
+            case 3 -> valor1 * valor2;
+            case 4 -> (double) Math.max(valor1, valor2) / Math.min(valor1, valor2);
+            default -> 0;
+        };
 
     }
 
-    public static int numeroRandom() {
+    private static String conversor(int operacao){
+
+        String[] simbolos = {"+","-","X","/"};
+
+        return simbolos[operacao -1];
+    }
+
+
+
+    public static int numeroRandom( int multiplicador) {
 
         SecureRandom sc = new SecureRandom();
-        return 1 + sc.nextInt(9);
+
+        int minimo = (int) Math.pow(10, multiplicador - 1);
+        int maximo = (int) Math.pow(10, multiplicador) - 1;
+
+        return minimo + sc.nextInt(maximo - minimo + 1);
     }
 
     public static String mensagem(int inicio, int fim) {
@@ -49,9 +74,21 @@ public class Questao635 {
 
         Scanner input = new Scanner(System.in);
 
+        System.out.println("Qual o tipo de problema deseja? \n1.Adição \t2.Subtração \t3.Nultiplicação \t4.divisão \t5.Aleatório");
+        int tipo = input.nextInt();
+        input.nextLine();
+
+        System.out.println("Qual nivel de dificuldade deseja? (1 - 10)");
+        int dificuldade =  input.nextInt();    
+
+        input.nextLine();
+
+        
+
+
         while (contador < 10) {
 
-            desenharNumero(numeroRandom(), numeroRandom());
+            desenharNumero(numeroRandom(dificuldade), numeroRandom(dificuldade), tipo);
 
             while (true) {
 
